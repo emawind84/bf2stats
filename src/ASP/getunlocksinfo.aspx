@@ -187,6 +187,11 @@ $head = "O\n" .
 $num = strlen(preg_replace('/[\t\n]/','',$head));
 $num += strlen(preg_replace('/[\t\n]/','',$out));
 
+// $log = SYSTEM_PATH . DS . 'logs' . DS . 'admin_event.log';
+// $file = @fopen($log, 'a');
+// @fwrite($file, $head . $out . "$\t" . $num . "\t$");
+// @fclose($file);
+
 print $head . $out . "$\t" . $num . "\t$";
 
 

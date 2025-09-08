@@ -386,6 +386,10 @@ class Serverinfo
         $rules = "x".substr($output,0,strpos($output,"\\\\".chr(1)));
         $players = "\\".substr($output,strpos($output,"\\\\".chr(1))+3);
 
+        //error_log(mb_convert_encoding($output, "UTF-8"));
+        //error_log($rules);
+        //error_log($players);
+
         $p3 = strpos($players,"\\\\".chr(2));
 
         if(!$p3) 
@@ -411,12 +415,16 @@ class Serverinfo
         //Parse Rules
         $rule_temp = substr($rules,1);
         $rule_temp = str_replace("�","\\",$rule_temp);
+        $rule_temp = str_replace("\\ 0@splitnum\\\x80\\", "", $rule_temp);
         $rules_arr = explode("\\",$rule_temp);
         $rules_count = count($rules_arr);
+
+        //error_log($rule_temp);
 
         // Build our server data into a nice array
         for($i=0; $i < ($rules_count / 2); $i++) 
         {
+            //error_log($rules_arr[$i*2] . ' = ' . $rules_arr[($i*2)+1]);
             $r1[$i] = $rules_arr[$i*2];
             $r2[$i] = $rules_arr[($i*2)+1];
             $rule[$r1[$i]] = $r2[$i];

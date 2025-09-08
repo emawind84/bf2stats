@@ -126,6 +126,7 @@ function loadGamespyData($ip, $port)
 	//Parse Rules
 	$rule_temp = substr($rules,1);
 	$rule_temp = str_replace("�","\\",$rule_temp);
+	$rule_temp = str_replace("\\ 0@splitnum\\\x80\\", "", $rule_temp);
 	$rules_arr = explode("\\",$rule_temp);
 	$rules_count = count($rules_arr);
 
