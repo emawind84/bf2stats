@@ -181,36 +181,39 @@ function loadGamespyData($ip, $port)
 		}
 	}
 	
-	// Build out player list
-	$data = array();
-	$count = count($player['player_']);
-	for ($p = 0; $p < $count; $p++) 
-	{
-		// Fix missing deaths bug in custom maps ??
-		if(!isset($player["deaths_"][$p])) $player["deaths_"][$p] = 0;
-		$data[] = array(
-			'name' => trim($player["player_"][$p]), 
-			'score' => $player["score_"][$p],
-			'kills' => $player["skill_"][$p],            
-			'deaths' => $player["deaths_"][$p], 
-			'ping' => $player["ping_"][$p], 
-			'team' => $player["team_"][$p], 
-			'pid' => $player["pid_"][$p],
-			'ai' => $player["AIBot_"][$p]
-		);
-	}
-	
 	// Prepate our return array
 	$return = array(
 		'server' => $rule,
 		'team1' => array(), 
 		'team2' => array()
 	);
-	
-	// Sort each player by team
-	foreach($data as $player)
+
+	// Build out player list
+	$data = array();
+	if (isset($player['player_']))
 	{
-		$return['team'. $player['team']][] = $player;
+		$count = count($player['player_']);
+		for ($p = 0; $p < $count; $p++) 
+		{
+			// Fix missing deaths bug in custom maps ??
+			if(!isset($player["deaths_"][$p])) $player["deaths_"][$p] = 0;
+			$data[] = array(
+				'name' => trim($player["player_"][$p]), 
+				'score' => $player["score_"][$p],
+				'kills' => $player["skill_"][$p],            
+				'deaths' => $player["deaths_"][$p], 
+				'ping' => $player["ping_"][$p], 
+				'team' => $player["team_"][$p], 
+				'pid' => $player["pid_"][$p],
+				'ai' => $player["AIBot_"][$p]
+			);
+		}
+		
+		// Sort each player by team
+		foreach($data as $player)
+		{
+			$return['team'. $player['team']][] = $player;
+		}
 	}
 	
 	return $return;

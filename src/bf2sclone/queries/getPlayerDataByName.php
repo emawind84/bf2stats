@@ -1,6 +1,6 @@
 <?php
 	// Keep this query pure
-	// $WHERE = '';
+	$WHERE = '';
 	// if (RANKING_HIDE_BOTS) {
 	// 	$WHERE .= ' AND player.isbot = 0';
 	// }

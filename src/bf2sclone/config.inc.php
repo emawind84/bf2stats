@@ -1,13 +1,13 @@
 <?php
 function getVar($name, $default) {
 	$value = getenv($name) !== false ? getenv($name) : $default;
-	$value = gettype($default) == 'boolean' && $value == 'false' ? false : $value; // Fix string 'false' becoming true for boolean when using settype
+	$value = gettype($default) == 'boolean' && $value === 'false' ? false : $value; // Fix string 'false' becoming true for boolean when using settype
 	settype($value, gettype($default));
     return $value;
 }
 function defineVar($name, $default) {
 	$value = getenv($name) !== false ? getenv($name) : $default;
-	$value = gettype($default) == 'boolean' && $value == 'false' ? false : $value; // Fix string 'false' becoming true for boolean when using settype
+	$value = gettype($default) == 'boolean' && $value === 'false' ? false : $value; // Fix string 'false' becoming true for boolean when using settype
 	settype($value, gettype($default));
 	define($name, $value);
 }
