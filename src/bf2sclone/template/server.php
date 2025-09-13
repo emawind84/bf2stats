@@ -41,6 +41,29 @@ $template = '
 							}
 						}
 						$port = $s['port'] ? $s['port'] : '0';
+						
+						$sponsortext = $s['data'] ? esc_attr($s['data']['server']['bf2_sponsortext']) : '';
+						// Check if string starts with '$vars:'
+						if (strpos($sponsortext, '$vars:') === 0) {
+							// Step 1: Remove the prefix and suffix
+							$trimmed = trim($sponsortext, '$');
+							$trimmed = str_replace('vars:', '', $trimmed);
+							// Step 2: Split into key-value pairs
+							$pairs = explode(';', $trimmed);
+							// Start HTML output
+							$sponsortext = "<ul>\n";
+							foreach ($pairs as $pair) {
+								list($key, $value) = explode('=', $pair, 2);
+								// Check if value is a URL
+								if (filter_var($value, FILTER_VALIDATE_URL)) {
+									$sponsortext .= "<li><strong>$key:</strong> <a href=\"$value\" target=\"_blank\">$value</a></li>\n";
+								} else {
+									$sponsortext .= "<li><strong>$key:</strong> $value</li>\n";
+								}
+							}
+							$sponsortext .= "</ul>";
+						}
+
 						$template .= '
 						<table border="0" cellspacing="0" cellpadding="0" style="width: 100%; margin: 0;" class="stat server-stat">
 						<tbody>
@@ -128,7 +151,7 @@ $template = '
 								<td class="subheading" colspan="999">SERVER MESSAGE</td>
 							</tr>
 							<tr>
-								<td style="height: 50px;  vertical-align: top;" colspan="999">' . ($s['data'] ? esc_attr($s['data']['server']['bf2_sponsortext']) : '') . '</td>
+								<td style="height: 50px;  vertical-align: top;" colspan="999">' . $sponsortext . '</td>
 							</tr>
 						</tbody>
 						</table>
