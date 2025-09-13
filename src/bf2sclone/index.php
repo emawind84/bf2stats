@@ -47,6 +47,22 @@ $ADD = isset($_GET["add"]) ? $_GET["add"] : 0;
 $REMOVE = isset($_GET["remove"]) ? $_GET["remove"] : 0;
 $LEADERBOARD = isset($_POST["leaderboard"]) ? $_POST["leaderboard"] : "0";
 
+/*
+| ---------------------------------------------------------------
+| Set Error Reporting and Zlib Compression
+| ---------------------------------------------------------------
+*/
+error_reporting(E_ALL);
+ini_set("log_errors", "1");
+if (!getenv('PHP_VERSION')) {
+    # Not running in docker. Log errors to file
+    ini_set("error_log", ROOT . DS . 'logs' . DS . 'php_errors.log');
+}
+ini_set("display_errors", "0");
+
+// Disable Zlib Compression
+ini_set('zlib.output_compression', '0');
+
 // Check for leaderboard getting / setting
 if($SET)
 {

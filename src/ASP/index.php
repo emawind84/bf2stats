@@ -24,8 +24,8 @@
 | ---------------------------------------------------------------
 */
     define('BF2_ADMIN', 1);
-    define('CODE_VER', '2.9.4');
-    define('CODE_VER_DATE', '2013-03-12');
+    define('CODE_VER', '2.10.0');
+    define('CODE_VER_DATE', '2025-09-12');
     define('DS', DIRECTORY_SEPARATOR);
     define('ROOT', dirname(__FILE__));
     define('SYSTEM_PATH', ROOT . DS . 'system');

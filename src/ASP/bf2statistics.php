@@ -23,8 +23,8 @@
 | Define Constants
 | ---------------------------------------------------------------
 */
-    define('CODE_VER', '2.9.4');
-    define('CODE_VER_DATE', '2013-03-12');
+    define('CODE_VER', '2.10.0');
+    define('CODE_VER_DATE', '2025-09-12');
 	define('TIME_START', microtime(1));
 	define('DS', DIRECTORY_SEPARATOR);
 	define('ROOT', dirname(__FILE__));
@@ -197,6 +197,58 @@
 		$errmsg = "Database version expected: ". CODE_VER .", Found: ". DB_VER;
 		ErrorLog($errmsg, 3);
 	}
+	
+/*
+| ---------------------------------------------------------------
+| Check if server is registered and is ranked
+| ---------------------------------------------------------------
+*/
+
+	/********************************
+	* Process 'Server'
+	********************************/
+	$gamesrv_ip = Auth::ClientIp();
+	ErrorLog("Processing Game Server: {$gamesrv_ip}", 3);
+	
+	// Get our server's game port and Queryport
+	$gamesrv_port = (isset($data['gameport'])) ? intval($data['gameport']) : 16567;
+	$gamesrv_qryport = (isset($data['queryport'])) ? intval($data['queryport']) : 29900;
+	$query = "SELECT `id`, `ranked` FROM `servers` WHERE `ip` = ".  $DB->quote($gamesrv_ip) ." AND `prefix` = ". $DB->quote($prefix);
+	$result = $DB->query( $query );
+	$gamesrv = $result->fetch();
+	if(!($result instanceof PDOStatement) || !$gamesrv)
+	{
+		// $query = "INSERT INTO `servers` SET ".
+		// 	"`ip` = '{$gamesrv_ip}', ".
+		// 	"`name` = ". $DB->quote($servername) .", ".
+		// 	"`prefix` = ". $DB->quote($prefix) .", ".
+		// 	"`port` = '{$gamesrv_port}', ".
+		// 	"`queryport` = {$gamesrv_qryport}, ".
+		// 	"`lastupdate` = NOW() ";
+		// $result = $DB->exec($query);
+		//checkQueryResult($result, $query, $DB);
+		$errmsg = " - Server not found! Snapshot will not be processed.";
+		ErrorLog($errmsg, 3);
+		die(_ERR_RESPONSE . $errmsg);
+	} 
+	else if ($gamesrv['ranked'])
+	{
+		$query = "UPDATE `servers` SET ".
+			"`name` = ". $DB->quote($servername) .", ".
+			"`port` = '{$gamesrv_port}', ".
+			"`queryport` = {$gamesrv_qryport}, ".
+			"`lastupdate` = NOW() ".
+			"WHERE ip = '{$gamesrv_ip}' AND prefix = ". $DB->quote($prefix);
+		$result = $DB->exec($query);
+		//checkQueryResult($result, $query, $DB);
+	}
+	else
+	{
+		$errmsg = " - Server not ranked! Snapshot will not be processed.";
+		ErrorLog($errmsg, 3);
+		die(_ERR_RESPONSE . $errmsg);
+	}
+
 
 /*
 | ---------------------------------------------------------------
@@ -1174,41 +1226,6 @@
 		ErrorLog("Error updating player stats!". PHP_EOL . $e->getMessage(), 1);
 		$DB->rollBack();
 		return;
-	}
-
-	/********************************
-	* Process 'Server'
-	********************************/
-	$gamesrv_ip = Auth::ClientIp();
-	ErrorLog("Processing Game Server: {$gamesrv_ip}", 3);
-	
-	// Get our server's game port and Queryport
-	$gamesrv_port = (isset($data['gameport'])) ? intval($data['gameport']) : 16567;
-	$gamesrv_qryport = (isset($data['queryport'])) ? intval($data['queryport']) : 29900;
-	$query = "SELECT `id` FROM `servers` WHERE `ip` = ".  $DB->quote($gamesrv_ip) ." AND `prefix` = ". $DB->quote($prefix);
-	$result = $DB->query( $query );
-	if(!($result instanceof PDOStatement) || !($serverid = $result->fetchColumn()))
-	{
-		$query = "INSERT INTO `servers` SET ".
-			"`ip` = '{$gamesrv_ip}', ".
-			"`name` = ". $DB->quote($servername) .", ".
-			"`prefix` = ". $DB->quote($prefix) .", ".
-			"`port` = '{$gamesrv_port}', ".
-			"`queryport` = {$gamesrv_qryport}, ".
-			"`lastupdate` = NOW() ";
-		$result = $DB->exec($query);
-		//checkQueryResult($result, $query, $DB);
-	} 
-	else 
-	{
-		$query = "UPDATE `servers` SET ".
-			"`name` = ". $DB->quote($servername) .", ".
-			"`port` = '{$gamesrv_port}', ".
-			"`queryport` = {$gamesrv_qryport}, ".
-			"`lastupdate` = NOW() ".
-			"WHERE ip = '{$gamesrv_ip}' AND prefix = ". $DB->quote($prefix);
-		$result = $DB->exec($query);
-		//checkQueryResult($result, $query, $DB);
 	}
 	
 	/********************************
