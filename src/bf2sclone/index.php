@@ -269,6 +269,8 @@ elseif(strcasecmp($GO, 'servers') == 0 && !$SID)
 		$serversWithGamespyData = array();
 		foreach ($servers as $s) {
 			$s['data'] = loadGamespyData($s['ip'], $s['queryport']);
+			if (isset($s['data']['server']))
+				$s['data']['server']['bf2_ranked'] = $s['ranked'];
 			$serversWithGamespyData[] = $s;
 		}
 		$servers = $serversWithGamespyData;
