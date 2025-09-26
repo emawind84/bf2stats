@@ -607,25 +607,25 @@ medal_data = (
 			#Updated these service ribbons to be based on Global Map Time
 			#Mid-East Service
 			# Move to BACKEND!!
-			# ('3191305', 'Msr', 1, f_and(	global_stat('mtm-0', 1),	# kubra_dam
-											# global_stat('mtm-1', 1),	# mashtuur_city
-											# global_stat('mtm-2', 1),	# operation_clean_sweep
-											# global_stat('mtm-3', 1),	# zatar_wetlands
-											# global_stat('mtm-4', 1),	# strike_at_karkand
-											# global_stat('mtm-5', 1),	# sharqi_peninsula
-											# global_stat('mtm-6', 1),	# gulf_of_oman
-										# )),
+			('3191305', 'Msr', 1, f_and(	global_stat('mtm-0', 1),	# kubra_dam
+											global_stat('mtm-1', 1),	# mashtuur_city
+											global_stat('mtm-2', 1),	# operation_clean_sweep
+											global_stat('mtm-3', 1),	# zatar_wetlands
+											global_stat('mtm-4', 1),	# strike_at_karkand
+											global_stat('mtm-5', 1),	# sharqi_peninsula
+											global_stat('mtm-6', 1),	# gulf_of_oman
+										)),
 
 			#Far-East Service
 			# Moved to BACKEND!!
-			# ('3190605', 'Fsr', 1, f_and(	global_stat('mtm-100', 1),	# daqing_oilfields
-											# global_stat('mtm-101', 1),	# dalian_plant
-											# global_stat('mtm-102', 1),	# dragon_valley
-											# global_stat('mtm-103', 1),	# fushe_pass
-											# #global_stat('mtm-104', 1),	# hingan_hills (Doesn't Exist!)
-											# global_stat('mtm-105', 1),	# songhua_stalemate
-											# global_stat('mtm-601', 1),	# wake_island_2007
-										# )),
+			('3190605', 'Fsr', 1, f_and(	global_stat('mtm-100', 1),	# daqing_oilfields
+											global_stat('mtm-101', 1),	# dalian_plant
+											global_stat('mtm-102', 1),	# dragon_valley
+											global_stat('mtm-103', 1),	# fushe_pass
+											#global_stat('mtm-104', 1),	# hingan_hills (Doesn't Exist!)
+											global_stat('mtm-105', 1),	# songhua_stalemate
+											global_stat('mtm-601', 1),	# wake_island_2007
+										)),
 
 			#Combat Action Ribbon
 			('3240301',	'Car',	1, 
@@ -926,21 +926,21 @@ medal_data = (
 # Added by Chump - added for bf2statistics
 			#Navy Cross
 			# Move to BACKEND ??
-			# ('2021403',	'Ncm',	2, f_and(	global_stat_multiple_times ('atm-0', 360000, '2021403'),
-											# global_stat_multiple_times ('abr-0', 100, '2021403'),
-											# global_stat_multiple_times ('awn-0', 100, '2021403'))),
+			('2021403',	'Ncm',	2, f_and(	global_stat_multiple_times ('atm-0', 360000, '2021403'),
+											global_stat_multiple_times ('abr-0', 100, '2021403'),
+											global_stat_multiple_times ('awn-0', 100, '2021403'))),
 
 			#Golden Scimitar
 			# Move to BACKEND ??
-			# ('2020719',	'Gsm',	2, f_and(	global_stat_multiple_times ('atm-1', 360000, '2020719'),
-											# global_stat_multiple_times ('abr-1', 100, '2020719'),
-											# global_stat_multiple_times ('awn-1', 100, '2020719'))),
+			('2020719',	'Gsm',	2, f_and(	global_stat_multiple_times ('atm-1', 360000, '2020719'),
+											global_stat_multiple_times ('abr-1', 100, '2020719'),
+											global_stat_multiple_times ('awn-1', 100, '2020719'))),
 
 			#People's Medallion
 			# Move to BACKEND ??
-			# ('2021613',	'pmm',	2, f_and(	global_stat_multiple_times ('atm-2', 360000, '2021613'),
-											# global_stat_multiple_times ('abr-2', 100, '2021613'),
-											# global_stat_multiple_times ('awn-2', 100, '2021613'))),
+			('2021613',	'pmm',	2, f_and(	global_stat_multiple_times ('atm-2', 360000, '2021613'),
+											global_stat_multiple_times ('abr-2', 100, '2021613'),
+											global_stat_multiple_times ('awn-2', 100, '2021613'))),
 
 #****************************************************************************************
 #   B P 1 / B P 2      stuff       Ribbons = 3, Medals = 2, Badges = 1
@@ -949,31 +949,31 @@ medal_data = (
 			#European Union Special Service Medal
 			# WARNING!  Can Cause problems if EF Booster Pack not isnatlled correctly! :(
 			# Move to BACKEND ??
-			# ('2270521',	'Eum',	2, f_and(	global_stat_multiple_times ('atm-9', 180000, '2270521'),
-											# global_stat_multiple_times ('abr-9', 100, '2270521'),
-											# global_stat_multiple_times ('awn-9', 50, '2270521'))),
+			('2270521',	'Eum',	2, f_and(	global_stat_multiple_times ('atm-9', 180000, '2270521'),
+											global_stat_multiple_times ('abr-9', 100, '2270521'),
+											global_stat_multiple_times ('awn-9', 50, '2270521'))),
 
 			#European Union Service ribbon
 			# WARNING!  Can Cause problems if EF Booster Pack not installed correctly! :(
 			# Move to BACKEND ??
-			# ('3270519',	'Esr',	1,  f_and(	f_plus(global_stat('mtm-10'),
-												# f_plus(global_stat('mtm-11'),
-													# global_stat('mtm-110')), 180000),	# 50hrs in European Theater
-											# global_stat('mtm-10', 1),	# EF: operationsmokescreen
-											# global_stat('mtm-11', 1),	# EF: taraba_quarry
-											# global_stat('mtm-110', 1),	# EF: greatwall
-										# )),
+			('3270519',	'Esr',	1,  f_and(	f_plus(global_stat('mtm-10'),
+												f_plus(global_stat('mtm-11'),
+													global_stat('mtm-110')), 180000),	# 50hrs in European Theater
+											global_stat('mtm-10', 1),	# EF: operationsmokescreen
+											global_stat('mtm-11', 1),	# EF: taraba_quarry
+											global_stat('mtm-110', 1),	# EF: greatwall
+										)),
 
 			#North American Service Ribbon
 			# WARNING!  Can Cause problems if AF Booster Pack not installed correctly! :(
 			# Move to BACKEND ??
-			# ('3271401',	'Nas',	1,  f_and(	f_plus(global_stat('mtm-200'),
-												# f_plus(global_stat('mtm-201'),
-													# global_stat('mtm-202')), 90000),	# 25hrs in Nth American Theater
-											# global_stat('mtm-200', 1),	# AF: midnight_sun
-											# global_stat('mtm-201', 1),	# AF: operationroadrage
-											# global_stat('mtm-202', 1),	# AF: operationharvest
-										# )),
+			('3271401',	'Nas',	1,  f_and(	f_plus(global_stat('mtm-200'),
+												f_plus(global_stat('mtm-201'),
+													global_stat('mtm-202')), 90000),	# 25hrs in Nth American Theater
+											global_stat('mtm-200', 1),	# AF: midnight_sun
+											global_stat('mtm-201', 1),	# AF: operationroadrage
+											global_stat('mtm-202', 1),	# AF: operationharvest
+										)),
 
 			#end of medals_data
 			)
