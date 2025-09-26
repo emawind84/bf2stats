@@ -303,4 +303,26 @@ function getGamespyDataWithPlayerRanks($gamespyData) {
 	return $gamespyData;
 }
 
+function getGameMode($id)
+{
+	switch(strtolower($id)) 
+	{
+		case "gpm_coop":
+			return "Co-op";
+			break;
+
+		case "gpm_rally":
+			return "Race";
+			break;
+		
+		case "gpm_cq":
+			return "Conquest";
+			break;
+			
+		default:
+			return "-";
+			break;
+	}
+}
+
 ?>
