@@ -836,7 +836,7 @@ $template = '
 								$weapon = getUnlockByID($uid);
 								$template .=  '
 									<div class="unlock-inline" onmouseover="show_mine(this);" onmouseout="hide_mine(this);">
-											<a href="http://wiki.bf2s.com/weapons/unlocks/'.strtolower($weapon).'"><img src="'.$ROOT.'spacer.gif" style="background: url(\''.$ROOT.'game-images/unlocks/'.$unlocks[$uid] .'/'.$uid.'.png\');" width="115" height="33" alt="" /></a>
+											<a href="https://web.archive.org/web/20080306025906/http://wiki.bf2s.com/weapons/unlocks/'.strtolower($weapon).'"><img src="'.$ROOT.'spacer.gif" style="background: url(\''.$ROOT.'game-images/unlocks/'.$unlocks[$uid] .'/'.$uid.'.png\');" width="115" height="33" alt="" /></a>
 											<div class="unlock-pop dir-left">
 												<img src="'.$ROOT.'spacer.gif" style="background: url(\''.$ROOT.'game-images/unlocks/full/'.$uid.'.jpg\');" width="128" height="128" alt="" />
 												<strong>Click for more about the '.$weapon.'</strong>
@@ -1137,7 +1137,8 @@ $template = '
 			<li class="' . ($GO == 'my-leaderboard' ? 'current' : '') . '"><a href="'. $ROOT .'?go=my-leaderboard">My Leader Board</a></li>
 			<li class="' . ($GO == 'currentranking' ? 'current' : '') . '"><a href="'. $ROOT .'?go=currentranking">Rankings</a></li>
 			<li class="' . ($GO == 'ubar' ? 'current' : '') . '"><a href="'. $ROOT .'?go=ubar">UBAR</a></li>
-			<li><a href="http://wiki.bf2s.com/">Wiki</a></li>
+			<li><a href="https://web.archive.org/web/20080306025906/http://wiki.bf2s.com/">Wiki</a></li>
+			<li><a href="https://discord.emawind.com">Discord</a></li>
 		</ul>
 		
 		<form action="'.$ROOT.'?go=search" method="post" id="getstats">

@@ -134,7 +134,8 @@ $template = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "htt
 		<li class="' . ($GO == 'my-leaderboard' ? 'current' : '') . '"><a href="'. $ROOT .'?go=my-leaderboard">My Leader Board</a></li>
 		<li class="' . ($GO == 'currentranking' ? 'current' : '') . '"><a href="'. $ROOT .'?go=currentranking">Rankings</a></li>
 		<li class="' . ($GO == 'ubar' ? 'current' : '') . '"><a href="'. $ROOT .'?go=ubar">UBAR</a></li>
-		<li><a href="http://wiki.bf2s.com/">Wiki</a></li>
+		<li><a href="https://web.archive.org/web/20080306025906/http://wiki.bf2s.com/">Wiki</a></li>
+		<li><a href="https://discord.emawind.com">Discord</a></li>
 	</ul>
 	
 	<form action="'.$ROOT.'?go=search" method="post" id="getstats">
