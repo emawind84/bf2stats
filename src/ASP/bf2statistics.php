@@ -122,6 +122,10 @@
 	if ($prefix != '') 
 		$stats_filename .= $prefix . '-';
 	$stats_filename .= $mapname . '_' . $mapdate . '.txt';
+	
+	if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] != "") {
+		$ip_s = $_SERVER['REMOTE_ADDR'];
+	}
 
 	// SNAPSHOT Data OK
 	$errmsg = "SNAPSHOT Data Complete ({$mapname}:{$mapdate})";
@@ -1285,7 +1289,15 @@
 	* Process 'Archive Data File'
 	********************************/
 	$fn_src = SNAPSHOT_TEMP_PATH . DS . $stats_filename;
-	$fn_dest = SNAPSHOT_STORE_PATH . DS . $stats_filename;
+	$fn_dest = SNAPSHOT_STORE_PATH . DS . $ip_s . DS . $stats_filename;
+	
+	// Ensure target directory exists
+	if (!is_dir(SNAPSHOT_STORE_PATH . DS . $ip_s)) {
+		if (!mkdir(SNAPSHOT_STORE_PATH . DS . $ip_s, 0777, true)) {
+			ErrorLog("Failed to create directory: {$targetDir}", 1);
+			return;
+		}
+	}
 	
 	if(file_exists($fn_src)) 
 	{
