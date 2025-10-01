@@ -311,12 +311,16 @@ function getGameMode($id)
 			return "Co-op";
 			break;
 
+		case "gpm_cq":
+			return "Conquest";
+			break;
+			
 		case "gpm_rally":
 			return "Race";
 			break;
-		
-		case "gpm_cq":
-			return "Conquest";
+			
+		case "gpm_sprint":
+			return "Sprint";
 			break;
 			
 		default:

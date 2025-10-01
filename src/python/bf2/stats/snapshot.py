@@ -289,6 +289,12 @@ def getSnapShot():
 		v_value = 'poe2'
 	elif ( running_mod.lower() == 'mods/aix2' ):
 		v_value = 'aix2'
+	elif ( running_mod.lower() == 'mods/battleracer2' ):
+		v_value = 'battleracer2'
+	elif ( running_mod.lower() == 'mods/bf2all64' ):
+		v_value = 'bf2all64'
+	elif ( running_mod.lower() == 'mods/omnicide_final' ):
+		v_value = 'omnicide_final'
 	else:
 		v_value = 'bf2'
 	
