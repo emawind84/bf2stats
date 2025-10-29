@@ -353,6 +353,7 @@ $sqlschema[] = array('Servers Table',
 	`rcon_port` int(6) unsigned default '4711',
 	`rcon_password` varchar(50) default NULL,
 	`lastupdate` datetime NOT NULL default '0000-00-00 00:00:00',
+  `ranked` TINYINT DEFAULT 0 NOT NULL,
 	PRIMARY KEY  (`id`),
 	UNIQUE KEY `ip-prefix-unq` (`ip`,`prefix`)
 );");
