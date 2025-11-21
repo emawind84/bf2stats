@@ -109,16 +109,24 @@ function loadGamespyData($ip, $port)
 	}
 	if(!$p3) 
 	{
-		$p3 = strpos($players,"\�team_t");
+		$p3 = strpos($players,"\x5C\x81\x02team_t");
 	}
+
+	// \x01 = 
+	// \x02 = 
+	// \x10 = 
+	// \x30 = 0
+	// \x81 = �
+	// \x5C = \
 
 	// Parse players
 	$players = $p3 ? substr($players,0,$p3) : substr($players,0);
-	$players = str_replace("\\ 0@splitnum\�","",$players);
-	$players = str_replace("\\ 0@splitnum\\�","",$players);
-	$players = str_replace(" 0@splitnum\\","",$players);
-	$players = str_replace(" 0@splitnum\\�","",$players);
+	$players = str_replace("\x5C\x10\x20\x30@splitnum\x5C\x81\x01","",$players);
+	$players = str_replace("\x10\x20\x30@splitnum\x5C\x01\x01","",$players);
+	$players = str_replace("\x10\x20\x30@splitnum\x5C\x81\x01","",$players);
 	$players = str_replace("\x10\x20\x30@splitnum\\\x81\x01","",$players);
+	$players = str_replace("\x10\x20\x30@splitnum\\\x81\x02","",$players);
+	$players = str_replace("\x10\x20\x30@splitnum\\\x82\x01","",$players);
 	$players = str_replace("\x10\x20\x30@splitnum\\\x82\x02","",$players);
 	// Strip the cut-off prop. E.g. '\F. Liliegren\\score\\score_\\0\0' becomes '\F. Liliegren\\score_\\0'
 	$players = preg_replace('/\\\\{2}[^_\\\\]+(\\\\{2}[^_\\\\]+_\\\\)/',"$1",$players);
@@ -126,7 +134,8 @@ function loadGamespyData($ip, $port)
 	//Parse Rules
 	$rule_temp = substr($rules,1);
 	$rule_temp = str_replace("�","\\",$rule_temp);
-	$rule_temp = str_replace("\\ 0@splitnum\\\x80\\", "", $rule_temp);
+	$rule_temp = str_replace("\x5C\x10\x20\x30@splitnum\x5C\x80\x5C", "", $rule_temp);
+	$rule_temp = str_replace("\x5C\x10\x20\x30@splitnum\x5C", "", $rule_temp);
 	$rules_arr = explode("\\",$rule_temp);
 	$rules_count = count($rules_arr);
 
